@@ -1,6 +1,6 @@
 import requests
-
-GOOGLE_API_KEY = "Enter Your Google API Key Here"
+import streamlit as st
+GOOGLE_API_KEY = st.secret["GOOGLE_API_KEY"]  # Ensure you have set this in your Streamlit secrets
 
 def search_books(query):
     url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={GOOGLE_API_KEY}"
