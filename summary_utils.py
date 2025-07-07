@@ -1,4 +1,6 @@
 import torch
+import torch
+torch.classes.__path__ = []
 from transformers import pipeline
 import os
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
