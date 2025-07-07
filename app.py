@@ -3,6 +3,13 @@ os.environ["STREAMLIT_SERVER_FILE_WATCHER_TYPE"] = "none"
 import warnings
 warnings.filterwarnings("ignore")
 import streamlit as st
+import torch
+
+# Patch torch.classes to prevent Streamlit from crashing during module inspection
+try:
+    torch.classes.__path__ = []
+except Exception:
+    pass
 from book_utils import search_books
 from summary_utils import generate_summary
 
