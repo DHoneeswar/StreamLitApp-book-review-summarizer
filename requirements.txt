@@ -4,4 +4,4 @@ transformers
 torch
 torchvision
 torchaudio
-python_version == 3.11
+
