@@ -4,8 +4,13 @@ GOOGLE_API_KEY = st.secrets["api_key"]  # Ensure you have set this in your Strea
 
 def search_books(query):
     url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={GOOGLE_API_KEY}"
-    response = requests.get(url)
-    data = response.json()
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises HTTPError for bad responses
+        data = response.json()
+    except Exception as e:
+        st.error(f"❌ Google Books API request failed: {e}")
+        return []
 
     results = []
     for item in data.get("items", [])[:5]:
